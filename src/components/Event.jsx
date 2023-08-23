@@ -1,93 +1,268 @@
-import React from "react";
-import { Card } from "./Card";
+import { useState,useEffect } from "react";
+import { app } from '../firebase';
+import { getAuth,}  from "firebase/auth";
+import { getFirestore,  collection, onSnapshot, query,} from "firebase/firestore";
 import { Card1 } from "./Card1";
-const Event = () => {
-  return (
-    <div className="A">
-      <div className="About">
-        <Card1
-          url={"/Docouments/gargi.jpg"}
-          name={"Dr. Preti"}
-          position1={"Head"}
-        />
+import Card4 from "./Card4";
+import Card5 from "./Card5";
 
-        <div className="description">
-          <h3>
-            Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt,
-            odio! a ratione enim architecto expedita dolore, aperiam rem
-            incidunt facilis possimus exercitationem commodi, saepe, tenetur
-            totam. Ab, eaque tenetur odit delectus repellendus voluptate, dicta
-            ex ratione ut suscipit quas magnam aut quod ips
-          </h3>
-        </div>
-      </div>
-      <h2 className="gp">CLUBS</h2>
-      <div className="About1">
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Auditorium"}
-          position={"/Auditorium"}
-        />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Cultural"}
-          position={"/Cultural"}
-        />
 
-        <Card url={"/Docouments/sac1.jpg"} name={"Band"} position={"/Band"} />
 
-        <Card url={"/Docouments/sac1.jpg"} name={"Tech"} position={"/Tech"} />
+const auth=getAuth(app);
+const db = getFirestore(app);
 
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Web Development"}
-          position={"/Web_development"}
-        />
-        <Card url={"/Docouments/sac1.jpg"} name={"Dance"} position={"/Dance"} />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Cinematography"}
-          position={"/Cinematography"}
-        />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Marketing"}
-          position={"/Markting"}
-        />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Media and Publication"}
-          position={"/Media_and_publication"}
-        />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Robotics"}
-          position={"/Robotics"}
-        />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Takshilla"}
-          position={"/Takshilla"}
-        />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Art and Carft"}
-          position={"/Art_and_craft"}
-        />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Entrepreneurship"}
-          position={""}
-        />
-        <Card url={"/Docouments/sac1.jpg"} name={"Abhivyakti"} position={""} />
-        <Card
-          url={"/Docouments/sac1.jpg"}
-          name={"Photography"}
-          position={"/Photography"}
-        />
-      </div>
-    </div>
-  );
-};
 
-export { Event };
+
+let b=[]
+let e=[]
+
+
+
+
+
+
+
+const Event =()=>{
+
+const [heading,setheading]=useState("");
+const [program_name,setprogram_name]=useState("");
+const [Photos,setPhotos]=useState([]);
+const [shed,setshed]=useState([]);
+
+
+useEffect(() => {
+  const q = query(collection(db, "Event page"));
+
+  
+
+  const unsubscribeForMessage = onSnapshot(q, (snap) => {
+      const a=(snap.docs.map((item)=>item.data()))
+      // console.log(a[0].Member)
+      
+  console.log(a[0],"dkfdkdkf")
+  setprogram_name(a[0].program_name);
+  setheading(a[0].heading);
+  setPhotos(a[0]);
+  setshed(a[0]);
+  const c=a[0].events_photos
+  const d=a[0].Program_Schedule
+  for(let i=0;i<c.length;i++){
+    b.push(c[i])
+                }
+    for(let i=0;i<d.length;i++){
+        e.push(d[i])
+                       }
+    });
+
+
+  return () => {
+   
+    unsubscribeForMessage();
+  };
+}, []);
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+return(
+<>
+
+
+
+<main id="main">
+   
+   {/*==========================
+Speakers Section
+   ============================*/}
+   <section id="speakers" className="wow fadeInUp">
+     <div className="container">
+       <div className="section-header">
+         <h2>Events</h2>
+         
+       </div>
+       <div className="row">
+       
+         
+       {b.map((item,index)=>{
+
+return (
+  <Card4 name={item.name}
+  url={item.url}
+  details={item.details}
+   />
+ )
+})}
+    
+        
+       </div>
+     </div>
+   </section>
+
+   {/*==========================
+Schedule Section
+   ============================*/}
+   <section id="schedule" className="section-with-bg">
+     <div className="container wow fadeInUp">
+       <div className="section-header">
+         <h2>{program_name}</h2>
+         <p style={{color:"blue"}}>PROGRAM SCHEDULE</p>
+       </div>
+       <ul className="nav nav-tabs" role="tablist">
+         <li className="nav-item">
+           <a className="nav-link active" href="#day-1" role="tab" data-toggle="tab">Day 1</a>
+         </li>
+         <li className="nav-item">
+           <a className="nav-link" href="#day-2" role="tab" data-toggle="tab">Day 2</a>
+         </li>
+         <li className="nav-item">
+           <a className="nav-link" href="#day-3" role="tab" data-toggle="tab">Day 3</a>
+         </li>
+       </ul>
+
+
+
+       <h3 className="sub-heading" style={{color:"grey"}}>{heading}</h3>
+       <div className="tab-content row justify-content-center">
+         {/* Schdule Day 1 */}
+         <div role="tabpanel" className="col-lg-9 tab-pane fade show active" id="day-1">
+          
+
+
+
+
+
+
+          
+
+
+
+
+         
+
+
+
+
+
+
+
+
+         
+
+
+     
+         {e.map((item,index)=>{
+
+return (
+  <Card5 time={item.time}
+  name1={item.event_name}
+  description={item.description}
+  last_date={item.last_date}
+  link={item.Registration_link}
+   />
+ )
+})}
+     
+
+
+
+
+
+
+
+
+
+
+
+  </div>
+
+
+
+
+
+         {/* End Schdule Day 1 */}
+         {/* Schdule Day 2 */}
+      
+         
+
+          
+           
+         {/* End Schdule Day 2 */}
+         {/* Schdule Day 3 */}
+    
+             
+            
+         </div>
+         {/* End Schdule Day 2 */}
+       </div>
+   
+   </section>
+
+
+
+
+
+
+
+
+
+
+   {/*==========================
+Venue Section
+   ============================*/}
+   <section id="venue" className="wow fadeInUp">
+   <div className="container-fluid">
+       <div className="section-header">
+         <h2>for any QUERY</h2>
+         <p> DETAILS AND FOR ANY QUERY CONTACT TO
+PRAJJWAL :- 8755293708
+<p> ABHISHEK LAKHERA :- 6396427754
+(CULTURAL HEAD) (EVENT MANAGEMENT)</p></p>
+       </div>
+       {/* <div className="row no-gutters">
+     
+       </div> */}
+     </div>
+    
+   </section>
+ 
+  
+ 
+
+
+
+ </main>
+ 
+
+
+
+</>
+
+
+
+)
+
+
+
+}
+export  {Event};

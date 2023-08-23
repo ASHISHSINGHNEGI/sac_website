@@ -63,7 +63,7 @@ b.push(c[i])
 <div className="About">
 
 <Card1
-url={"/Docouments/gargi.jpg"}
+url={"/Docouments/gargi.webp"}
 name={head}
 position1={"Head"}
 />

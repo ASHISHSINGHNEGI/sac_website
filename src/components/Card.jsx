@@ -20,8 +20,6 @@ const Card=({url,name, position,position1})=>{
              <h3>{name}</h3>
              <p>{position1}</p>
              <div className="layer">
-               <h3>Social Media app</h3>
-               <p>Lorem ipsum, dolor sit amet consectetur adipisicing elit. Labore veniam numquam explicabo quos, quibusdam quis ab minima unde soluta incidunt et id recusandae optio molestiae sint atque expedita! Eum, quibusdam!</p>
                <a><i className="fa-solid fa-up-right-from-square"></i></a>
              </div>
            </div>

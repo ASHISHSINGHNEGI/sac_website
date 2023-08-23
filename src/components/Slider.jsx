@@ -1,41 +1,77 @@
 import Carousel from 'react-bootstrap/Carousel';
 
-function IndividualIntervalsExample() {
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+function IndividualIntervalsExample({Event1,SRC1,dec1,Event2,SRC2,dec2,Event3,SRC3,dec3,Event4,SRC4,dec4,Event5,SRC5,dec5}) {
   return (
     <Carousel className="slider">
       <Carousel.Item className='sliderimg' interval={1000}>
         <img
           className="d-block w-100"
-          src="./Docouments/Ashu.jpg"
+          src={SRC1}
           alt="First slide"
         />
         <Carousel.Caption>
-          <h3>First slide label</h3>
-          <p>Nulla vitae elit libero, a pharetra augue mollis interdum.</p>
+          <h3>{Event1}</h3>
+          <p>{dec1}</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item interval={500}>
         <img
           className="d-block w-100"
-        src="/Docouments/amit.jpg"
+          src={SRC2}
           alt="Second slide"
         />
         <Carousel.Caption>
-          <h3>Second slide label</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.</p>
+        <h3>{Event2}</h3>
+          <p>{dec2}</p>
         </Carousel.Caption>
       </Carousel.Item>
       <Carousel.Item>
         <img
           className="d-block w-100"
-          src="./Docouments/Abhi.jpg"
+          src={SRC3}
           alt="Third slide"
         />
         <Carousel.Caption>
-          <h3>Third slide label</h3>
-          <p>
-            Praesent commodo cursus magna, vel scelerisque nisl consectetur.
-          </p>
+        <h3>{Event3}</h3>
+          <p>{dec3}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={SRC4}
+          alt="Third slide"
+        />
+        <Carousel.Caption>
+        <h3>{Event4}</h3>
+          <p>{dec4}</p>
+        </Carousel.Caption>
+      </Carousel.Item>
+      <Carousel.Item>
+        <img
+          className="d-block w-100"
+          src={SRC5}
+          alt="Third slide"
+        />
+        <Carousel.Caption>
+        <h3>{Event5}</h3>
+          <p>{dec5}</p>
         </Carousel.Caption>
       </Carousel.Item>
     </Carousel>

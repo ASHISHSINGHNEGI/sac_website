@@ -29,7 +29,8 @@ let b=[]
 
 const Tech=()=>{
   const [head,sethead]=useState("")
-
+  const [decs , setdecs]=useState("")
+  const [urll,seturll]=useState("");
     const [user, setuserdata]=useState([]);
     console.log("akfk",b[0])
     console.log("hhh",user)
@@ -45,6 +46,8 @@ const Tech=()=>{
         const c=  a[0].Members;
         console.log(c[0])
         sethead(a[0].Head)
+        setdecs(a[0].Discription)
+          seturll(a[0].Photo_url)
         setuserdata(...c)
            
             for(let i=0;i<c.length;i++){
@@ -68,16 +71,13 @@ b.push(c[i])
 <div className="About">
 
 <Card1
-url={"/Docouments/gargi.jpg"}
+url={urll}
 name={head}
 position1={"Head"}
 />
 
 <div className="description">
-<h3 >Lorem ipsum dolor sit, amet consectetur adipisicing elit. Incidunt, odio!
-    a ratione enim architecto expedita dolore, aperiam rem incidunt facilis possimus exercitationem commodi, saepe, tenetur totam. Ab, eaque tenetur odit delectus repellendus voluptate, dicta ex ratione ut suscipit quas magnam aut quod ips
-
-
+<h3 >{decs}
 </h3>
 </div>
 </div>

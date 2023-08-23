@@ -20,7 +20,7 @@ const Footer=()=>{
 <a href="https://sacgbpiet63@gmail.com"><i className="fa-solid fa-envelope"></i></a>
 
 <a href="https://www.youtube.com/@SACGBPIET-rp9qv"><i className="fa-brands fa-youtube"></i></a>
-   </h3><h3>Copyright © 2023 CollegeFest, LLC. All Rights Reserved. Send Inquires To info@collegefest.com</h3>
+   </h3><h3 id="sub">Copyright © 2023 CollegeFest, LLC. All Rights Reserved. Send Inquires To info@collegefest.com</h3>
 
 
         </div>
